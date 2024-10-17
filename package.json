@@ -1,14 +1,14 @@
 {
-  "name": "pinit",
-  "displayName": "Pinit",
-  "publisher": "Decahedra",
+  "name": "quick-pin",
+  "displayName": "Quick Pin",
+  "publisher": "Augustbright",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/decahedra/pinit"
+    "url": "https://github.com/augustbright/quick-pin"
   },
-  "description": "Allows you to pin folders and files",
-  "version": "0.0.2",
+  "description": "Pin folders and files. Reveal them in a click.",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -18,40 +18,44 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./out/main.js",
+  "main": "./out/extension.js",
   "contributes": {
     "views": {
       "explorer": [
         {
           "id": "pins",
-          "name": "Pins",
-          "when": "pinit.showTreeView === true",
+          "name": "Quick Pins",
+          "when": "quick-pin.showTreeView === true",
           "icon": "media/icon.svg",
-          "contextualTitle": "Pinit pins"
+          "contextualTitle": "Quick pins"
         }
       ]
     },
     "viewsWelcome": [
       {
         "view": "pins",
-        "contents": "No pins currently held."
+        "contents": "Right click on a folder or file in the explorer - Pin Item"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "pinit.pinItem"
+          "command": "quick-pin.pinItem"
         }
       ],
       "view/item/context": [
         {
+          "command": "quick-pin.renamePin",
+          "when": "view == pins && viewItem == pin"
+        },
+        {
           "when": "view == pins",
-          "command": "pinit.deletePin"
+          "command": "quick-pin.deletePin"
         }
       ],
       "view/title": [
         {
-          "command": "pinit.deleteAllPins",
+          "command": "quick-pin.deleteAllPins",
           "when": "view == pins",
           "group": "navigation"
         }
@@ -59,19 +63,23 @@
     },
     "commands": [
       {
-        "command": "pinit.pinItem",
+        "command": "quick-pin.pinItem",
         "title": "Pin Item"
       },
       {
-        "command": "pinit.deletePin",
+        "command": "quick-pin.renamePin",
+        "title": "Rename Pin"
+      },
+      {
+        "command": "quick-pin.deletePin",
         "title": "Delete Pin"
       },
       {
-        "command": "pinit.revealAndOpen",
+        "command": "quick-pin.revealAndOpen",
         "title": "Reveal and then open a selected folder"
       },
       {
-        "command": "pinit.deleteAllPins",
+        "command": "quick-pin.deleteAllPins",
         "title": "Delete all pins",
         "icon": "$(notebook-delete-cell)"
       }
@@ -90,7 +98,6 @@
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch"
   },
   "devDependencies": {
-    "@decahedra/prettier-plugin": "^1.0.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@types/vscode": "^1.82.0",

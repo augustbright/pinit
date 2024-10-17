@@ -1,5 +1,6 @@
 export interface TPin {
-	label: string;
-	type: 'file' | 'folder';
-	fileLocation: string;
+    label: string;
+    type: 'file' | 'folder';
+    fileLocation: string;
+    alias?: string;
 }

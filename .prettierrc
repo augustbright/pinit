@@ -1,8 +1,7 @@
 {
-    "plugins": ["@decahedra/prettier-plugin"],
 	"singleQuote": true,
 	"tabWidth": 4,
-	"useTabs": true,
+	"useTabs": false,
 	"arrowParens": "avoid",
 	"bracketSpacing": true,
 	"insertPragma": false,
@@ -10,8 +9,10 @@
 	"trailingComma": "all",
 	"semi": true,
 	"printWidth": 100,
-	"importOrder": ["^[./]"],
+	"importOrder": [
+		"^[./]"
+	],
 	"importGroupOrder": "length",
 	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true,
+	"importOrderSortSpecifiers": true
 }
